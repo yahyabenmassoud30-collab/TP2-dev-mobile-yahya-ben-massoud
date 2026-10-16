@@ -1,8 +1,6 @@
 package com.example.patients.di
 
-import com.example.patients.data.remote.ConsultationApi
 import com.example.patients.data.remote.PatientApi
-import com.example.patients.data.repository.ConsultationRepository
 import com.example.patients.data.repository.PatientRepository
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -13,7 +11,7 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.util.concurrent.TimeUnit
 
 // Émulateur : 10.0.2.2 — Téléphone réel : IP du PC (ex. http://192.168.1.20:5000/api/)
-private const val BASE_URL = "http://192.168.1.129:5000/api/"
+private const val BASE_URL = "http://192.168.1.109:5000/api/"
 
 class AppContainer {
 
@@ -35,8 +33,6 @@ class AppContainer {
         .build()
 
     private val patientApi: PatientApi = retrofit.create(PatientApi::class.java)
-    private val consultationApi: ConsultationApi = retrofit.create(ConsultationApi::class.java)
 
     val patientRepository = PatientRepository(patientApi, json)
-    val consultationRepository = ConsultationRepository(consultationApi, json)
 }
